@@ -123,6 +123,14 @@ function verifResult(reponse){
         const h1 =  document.querySelector('h1')
         h1.innerText = "Vos résultats"
         h1.after(ul)
+        //on ajoutte le bouton recommencer
+        const button = createElement('a',{
+            class: 'btn btn-primary',
+            href: '',
+            role:'button'
+        })
+        button.innerText = "Recommencer"
+        document.querySelector('.progress').after(button)
         // on rajoute l'object date dans l'obj exo
         const dateString = new Date().toLocaleString()
         const id = new Date()
