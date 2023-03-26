@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiplication</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="./css/calcul.css" rel="stylesheet">
+    <script src="./js/app.js" type="module" defer></script>
+    <script src="./js/theme.js" defer></script>
+</head>
+
+<body class="text-center">
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Multiplications</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Tables<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Exercices<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="liste.html">Derniers résultats</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 60px">
+        <div class="page" id="page1">
+            <fieldset class="form-check">
+                <legend> Selectionnez les tables</legend>
+                <div class="form-check form-check-inline" id="inlineCheckbox">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2" checked>
+                    <label class="form-check-label" for="inlineCheckbox2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3" checked>
+                    <label class="form-check-label" for="inlineCheckbox3">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4" checked>
+                    <label class="form-check-label" for="inlineCheckbox4">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="5" checked>
+                    <label class="form-check-label" for="inlineCheckbox5">5</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="6" checked>
+                    <label class="form-check-label" for="inlineCheckbox6">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="7" checked>
+                    <label class="form-check-label" for="inlineCheckbox7">7</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="8" checked>
+                    <label class="form-check-label" for="inlineCheckbox8">8</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="9" checked>
+                    <label class="form-check-label" for="inlineCheckbox9">9</label>
+                </div>
+            </fieldset>
+            <div class="form-group row">
+                <label for="nrbExo" class="col-auto col-form-label">Nombre de questions</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="nrbExo" step="1" min="10" max="100" value="20"
+                        required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button id="start" class="btn btn-primary">Commencer l'exercice</button>
+            </div>
+        </div>
+        <div class="page" id="page2">
+            <div class="pt-4 text-primary" id="countdown">
+                <div class="box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#dc3545" />
+                                <stop offset="100%" stop-color="#007bff" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="fond" cx="50px" cy="50px" r="50px"></circle>
+                        <circle class="changing" cx="50px" cy="50px" r="50px"></circle>
+                    </svg>
+                    <span></span>
+                </div>
+            </div>
+            <main class="pt-3 mb-3">
+                <h1>Calculez</h1>
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="a"></span>
+                            <span class="input-group-text">x</span>
+                            <span class="input-group-text" id="b"></span>
+                            <span class="input-group-text">=</span>
+                        </div>
+                        <input type="number" class="form-control  form-control-lg"
+                            aria-label="Résultat de la multiplication" name="getx" id="getx" autofocus>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Valider</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="resultat" id="resultat">
+                    <div class="progress" style="height: 50px">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="70"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="my-4 pt-4 text-muted text-center text-small">
+            <p>&copy; Version 2023 &#1581;&#1605;&#1586;&#1577; PERRIN</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>
