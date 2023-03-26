@@ -1,4 +1,4 @@
-import { TodoList } from "./components/TodoList.js";
+import { TodoList } from "./components/todoList.js";
 import { createElement } from "./functions/dom.js";
 try{
     const todosInStorage = localStorage.getItem('exoTabs')
