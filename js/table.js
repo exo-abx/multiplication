@@ -51,7 +51,7 @@ for(let a = 2; a < 10; a++){
     observer.observe(document.getElementById(a))
 }
 //Get the button
-let mybutton = document.getElementById("btn-back-to-top");
+let mybutton = document.getElementById("btnTop");
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {

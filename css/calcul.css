@@ -14,7 +14,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-svg {
+svg .compteur {
     transform: rotate(-90deg);
 }
 svg circle {
@@ -42,9 +42,3 @@ svg circle {
 .page{
     display: none;
 }
-#btn-back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-  }

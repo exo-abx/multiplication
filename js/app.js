@@ -17,6 +17,22 @@ window.onload = () => {
     bouton.addEventListener('click', startExo)
 }
 
+// Tout cocher
+document.getElementById('checkAll').addEventListener('click', function() {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = true;
+    }
+  });
+  
+  // Tout décocher
+  document.getElementById('uncheckAll').addEventListener('click', function() {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false;
+    }
+  });  
+
 function startExo(){
     //lacencement page
     for(let page of pages){
@@ -25,10 +41,15 @@ function startExo(){
     document.querySelector('#page2').style.display = "initial"
     //recupération donnée
     
-    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-
-    for (var i = 0; i < checkboxes.length; i++) {
-        arrayb.push(checkboxes[i].value)
+    const checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+    if (checkboxes.length === 0){
+        for (let i = 2; i < 10; i++) {
+            arrayb.push(i)
+        }
+    } else {
+        for (let i = 0; i < checkboxes.length; i++) {
+            arrayb.push(Number(checkboxes[i].value))
+        }
     }
     nbExo = Number(document.querySelector('#nrbExo').value)
     //lance l'exo
@@ -120,7 +141,7 @@ function verifResult(reponse){
             const t = new exoListItem(todo)
             ul.append(t.element)
         }
-        const h1 =  document.querySelector('h1')
+        const h1 =  document.querySelector('.h1Calcul')
         h1.innerText = "Vos résultats"
         h1.after(ul)
         //on ajoutte le bouton recommencer
@@ -151,7 +172,6 @@ function verifResult(reponse){
 function reload(){
     exo = {
         b: generateRandomInt(2,9),
-        //b: generateRandomInt(2,9),
         a: generateArray(),
         get x() {
             return this.a * this.b;
@@ -176,7 +196,7 @@ function reload(){
         count--;
     }, 1000)
     play()
-    console.log(exo.x)
+    //console.log(exo.x)
     return exo
 }
 /*
