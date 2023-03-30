@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords"
 		content="multiplication, tables de multiplication, tables multiplication aleatoires, exercices, Quiz de multiplication, Entraînement au calcul mental">
-	<title>Tables de multiplications aléatoires</title>
+	<title>Table de Pythagore</title>
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
@@ -19,12 +19,67 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+	<script src="./js/pythagore.js" type="module" defer></script>
 	<script src="./js/theme.js" defer></script>
 </head>
 
-<body>
-	<div class="container">
+<body class="text-center">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px"
+					viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+					<g id="Calque_1">
+						<g>
+							<line fill="none" stroke="#B2C2E5" stroke-width="4" stroke-linecap="round"
+								stroke-miterlimit="10" x1="6.002" y1="8.972" x2="44.271" y2="9.062" />
+						</g>
+						<g>
+							<line fill="none" stroke="#B2C2E5" stroke-width="2" stroke-linecap="round"
+								stroke-miterlimit="10" x1="6.002" y1="8.972" x2="6.002" y2="8.972" />
+						</g>
+					</g>
+					<g id="Calque_2">
+						<g>
+							<line fill="none" stroke="#B2C2E5" stroke-width="4" stroke-linecap="round"
+								stroke-miterlimit="10" x1="6.002" y1="37.973" x2="44.271" y2="38.062" />
+						</g>
+						<g>
+							<rect x="5.199" y="16.217" fill="none" width="40.321" height="18.733" />
+							<text transform="matrix(1 0 0 1 6.8447 29.1045)" fill="none" stroke="#B2C2E5"
+								stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" font-family="'ArialMT'"
+								font-size="18">a * b</text>
+						</g>
+					</g>
+				</svg>Multiplication</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="table_pythagore.html">Table de
+							Pythagore</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href=" tables_multiplication_aleatoires.html">Tables de multiplication
+							aléatoire</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="exercices.html">Exercices</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="historique_de_progression.html">Historique de progression</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container mt-3">
 		<h1 class="text-center mb-5">Table de Pythagore</h1>
 		<table class="table table-bordered text-center">
 			<thead>
@@ -48,120 +103,10 @@
 			<button type="button" class="btn btn-primary" id="hide-button">Cacher les résultats</button>
 			<button type="button" class="btn btn-primary" id="show-button">Montrer les résultats</button>
 		</div>
-
+		<footer class="my-4 pt-4 text-muted text-center text-small">
+			<p>&copy; Version 2023 &#1581;&#1605;&#1586;&#1577; PERRIN</p>
+		</footer>
 	</div>
-
-	<script>
-		const tbody = document.querySelector("#pythagore-table");
-		const hideButton = document.getElementById("hide-button");
-		const showButton = document.getElementById("show-button");
-		const values = {};
-
-		// Remplir le tableau
-		for (let i = 2; i < 10; i++) {
-			const row = document.createElement("tr");
-			const header = document.createElement("th");
-			header.setAttribute("scope", "row");
-			header.classList.add("table-primary")
-			header.textContent = i;
-			row.appendChild(header);
-
-			for (let j = 2; j < 10; j++) {
-				const cell = document.createElement("td");
-				const value = i * j;
-				cell.textContent = value;
-				row.appendChild(cell);
-
-				if (values[value] === undefined) {
-					values[value] = 1;
-				} else {
-					values[value] += 1;
-				}
-			}
-
-			tbody.appendChild(row);
-		}
-
-		showButton.addEventListener("click", function () {
-			for (let i = 0; i < cells.length; i++) {
-				cells[i].style.opacity = "1";
-			}
-		});
-		hideButton.addEventListener("click", function () {
-			const cells = document.getElementsByTagName("td");
-			for (let i = 0; i < cells.length; i++) {
-				cells[i].style.opacity = "0";
-				clearTable();
-			}
-		});
-
-		// Ajouter la classe "bg-success" lorsqu'un bouton est cliqué
-		const highlightBtn = document.querySelector("#highlight-btn");
-		highlightBtn.addEventListener("click", function () {
-			const cells = document.querySelectorAll("#pythagore-table td");
-			clearTable()
-			for (let i = 0; i < cells.length; i++) {
-				const value = parseInt(cells[i].textContent);
-
-				if (values[value] > 2) {
-					cells[i].classList.toggle("bg-primary");
-				}
-				if (values[value] > 3) {
-					cells[i].classList.toggle("bg-success");
-				}
-			}
-		});
-
-		function clearTable() {
-			const rows = document.getElementsByTagName("tr");
-			for (let i = 0; i < rows.length; i++) {
-				const cells = rows[i].getElementsByTagName("td");
-				for (let j = 0; j < cells.length; j++) {
-					cells[j].className = "";
-				}
-			}
-			const ths = document.getElementsByTagName("th");
-			for (let i = 0; i < ths.length; i++) {
-				ths[i].classList.remove("table-dark")
-				ths[i].classList.add("table-primary");
-			}
-		}
-		function highlightRowAndColumn(row, col) {
-			clearTable();
-			const rows = document.getElementsByTagName("tr");
-			const thead = document.getElementsByTagName("thead")[0];
-			const ths = thead.getElementsByTagName("th");
-
-			// Changer la couleur des th de la colonne
-			ths[col + 1].classList.add("table-dark");
-
-			// Changer la couleur du th de la ligne
-			rows[row].getElementsByTagName("th")[0].classList.add("table-dark");
-
-			for (let i = 0; i < rows.length; i++) {
-				const cells = rows[i].getElementsByTagName("td");
-				for (let j = 0; j < cells.length; j++) {
-					if ((i === row && j <= col) || (j === col && i <= row)) {
-						cells[j].classList.add("table-secondary");
-					}
-				}
-			}
-		}
-
-		const cells = tbody.querySelectorAll("td");
-
-		cells.forEach((cell) => {
-			cell.addEventListener("click", () => {
-				if (cell.style.opacity === "0") {
-					cell.style.opacity = "1";
-				} else {
-					const row = cell.parentNode.rowIndex;
-					const col = cell.cellIndex - 1;
-					highlightRowAndColumn(row, col);
-				}
-			});
-		});
-	</script>
 	</div>
 </body>
 
