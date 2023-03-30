@@ -96,9 +96,9 @@ class todoListItem{
         const progressSucces = progress.querySelector('.bg-success')
         const progressFailure = progress.querySelector('.bg-danger')
         if (objPourcentage.pourcentageVrai >= 50){
-            card.querySelector('.card-header').classList.add('list-group-item-success')
+            card.querySelector('.card-header').classList.add('bg-success')
         } else {
-            card.querySelector('.card-header').classList.add('list-group-item-danger')
+            card.querySelector('.card-header').classList.add('bg-danger')
         }
         progressSucces.setAttribute('style', `width: ${objPourcentage.pourcentageVrai}%`)
         progressFailure.setAttribute('style', `width: ${objPourcentage.pourcentageFaux}%`)
