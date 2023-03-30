@@ -14,9 +14,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-svg .compteur {
+.rotate-svg {
+    transform-origin: center center;
     transform: rotate(-90deg);
-}
+  }
+  
 svg circle {
     fill: none;
     stroke: url(#gradient);
