@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords"
+		content="multiplication, tables de multiplication, tables multiplication aleatoires, exercices, Quiz de multiplication, Entraînement au calcul mental">
+	<title>Tables de multiplications aléatoires</title>
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+	<link rel="manifest" href="img/favicons/site.webmanifest">
+	<link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+	<script src="./js/theme.js" defer></script>
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="text-center mb-5">Table de Pythagore</h1>
+		<table class="table table-bordered text-center">
+			<thead>
+				<tr>
+					<th class="table-primary" scope="col"></th>
+					<th class="table-primary" scope="col">2</th>
+					<th class="table-primary" scope="col">3</th>
+					<th class="table-primary" scope="col">4</th>
+					<th class="table-primary" scope="col">5</th>
+					<th class="table-primary" scope="col">6</th>
+					<th class="table-primary" scope="col">7</th>
+					<th class="table-primary" scope="col">8</th>
+					<th class="table-primary" scope="col">9</th>
+				</tr>
+			</thead>
+			<tbody id="pythagore-table">
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-primary" id="highlight-btn">Trouver plus de 2 fois</button>
+	</div>
+
+	<script>
+		const tbody = document.querySelector("#pythagore-table");
+		const values = {};
+
+		// Remplir le tableau
+		for (let i = 2; i < 10; i++) {
+			const row = document.createElement("tr");
+			const header = document.createElement("th");
+			header.setAttribute("scope", "row");
+			header.classList.add("table-primary")
+			header.textContent = i;
+			row.appendChild(header);
+
+			for (let j = 2; j < 10; j++) {
+				const cell = document.createElement("td");
+				const value = i * j;
+				cell.textContent = value;
+				row.appendChild(cell);
+
+				if (values[value] === undefined) {
+					values[value] = 1;
+				} else {
+					values[value] += 1;
+				}
+			}
+
+			tbody.appendChild(row);
+		}
+
+		// Ajouter la classe "bg-success" lorsqu'un bouton est cliqué
+		const highlightBtn = document.querySelector("#highlight-btn");
+		highlightBtn.addEventListener("click", function () {
+			const cells = document.querySelectorAll("#pythagore-table td");
+			clearTable()
+			for (let i = 0; i < cells.length; i++) {
+				const value = parseInt(cells[i].textContent);
+
+				if (values[value] > 2) {
+					cells[i].classList.toggle("bg-primary");
+				}
+				if (values[value] > 3) {
+					cells[i].classList.toggle("bg-success");
+				}
+			}
+		});
+		
+		function clearTable() {
+			const rows = document.getElementsByTagName("tr");
+			for (let i = 0; i < rows.length; i++) {
+				const cells = rows[i].getElementsByTagName("td");
+				for (let j = 0; j < cells.length; j++) {
+					cells[j].className = "";
+				}
+			}
+			const ths = document.getElementsByTagName("th");
+			for (let i = 0; i < ths.length; i++) {
+				ths[i].classList.remove("table-dark")
+				ths[i].classList.add("table-primary");
+			}
+		}
+		function highlightRowAndColumn(row, col) {
+			clearTable();
+			const rows = document.getElementsByTagName("tr");
+			const thead = document.getElementsByTagName("thead")[0];
+			const ths = thead.getElementsByTagName("th");
+
+			// Changer la couleur des th de la colonne
+			ths[col].classList.add("table-dark");
+
+			// Changer la couleur du th de la ligne
+			rows[row + 1].getElementsByTagName("th")[0].classList.add("table-dark");
+
+			for (let i = 0; i < rows.length; i++) {
+				const cells = rows[i].getElementsByTagName("td");
+				for (let j = 0; j < cells.length; j++) {
+					if ((i === row + 1 && j <= col - 1) || (j === col - 1 && i <= row + 1)) {
+						cells[j].classList.add("table-secondary");
+					}
+				}
+			}
+		}
+
+		const cells = tbody.querySelectorAll("td");
+
+		cells.forEach((cell) => {
+			cell.addEventListener("click", () => {
+				const row = cell.parentNode.rowIndex - 1;
+				const col = cell.cellIndex;
+				highlightRowAndColumn(row, col);
+			});
+		});
+
+	</script>
+	</div>
+</body>
+
+</html>
