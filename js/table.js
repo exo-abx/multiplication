@@ -31,7 +31,7 @@ function randomize(tab) {
 }
 for(let a = 2; a < 10; a++){
     const rowEl = document.createElement('div')
-    rowEl.classList.add('row', 'justify-content-center', 'mb-3')
+    rowEl.classList.add('justify-content-center', 'mb-3')
     const ulEl = document.createElement('ul')
     ulEl.classList.add('list-group')
     ulEl.setAttribute('id', a)
