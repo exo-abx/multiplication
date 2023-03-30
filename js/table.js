@@ -9,16 +9,19 @@ const observer = new IntersectionObserver((entries)=>{
             lis.forEach((li)=>{
                 li.remove()
             })    
-            randomize(arr)
-            for (let i of arr) {
-                const liEl = document.createElement('li')
-                liEl.classList.add('list-group-item', 'text-left')
-                liEl.innerText = `${a} x ${i} = ${a*i}`
-                ulEl.append(liEl)
-            }  
+            createLi(a,ulEl)
         }
     }
 })
+function createLi(a,ulEl) {
+  randomize(arr)
+            for (let i of arr) {
+                const liEl = document.createElement('li')
+                liEl.classList.add('list-group-item', 'text-left','fs-4','p-3')
+                liEl.innerText = `${a} x ${i} = ${a*i}`
+                ulEl.append(liEl)
+            }  
+}
 function randomize(tab) {
     var i, j, tmp;
     for (i = tab.length - 1; i > 0; i--) {
@@ -31,21 +34,15 @@ function randomize(tab) {
 }
 for(let a = 2; a < 10; a++){
     const rowEl = document.createElement('div')
-    rowEl.classList.add('justify-content-center', 'mb-3')
+    rowEl.classList.add('d-flex','justify-content-center', 'mb-3')
     const ulEl = document.createElement('ul')
-    ulEl.classList.add('list-group')
+    ulEl.classList.add('list-group','text-start')
     ulEl.setAttribute('id', a)
     const liTitreEl = document.createElement('li')
-    liTitreEl.classList.add('list-group-item', 'active','fw-bold', 'fs-4')
+    liTitreEl.classList.add('list-group-item', 'active','fw-bold','fs-2')
     liTitreEl.innerText = `Table de ${a}`
     ulEl.appendChild(liTitreEl)
-    randomize(arr)
-    for (let i of arr) {
-        const liEl = document.createElement('li')
-        liEl.classList.add('list-group-item', 'text-left')
-        liEl.innerText = `${a} x ${i} = ${a*i}`
-        ulEl.append(liEl)
-      }  
+    createLi(a,ulEl)
     rowEl.appendChild(ulEl)
     tablexEl.appendChild(rowEl)
     observer.observe(document.getElementById(a))
