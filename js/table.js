@@ -36,7 +36,7 @@ for(let a = 2; a < 10; a++){
     ulEl.classList.add('list-group')
     ulEl.setAttribute('id', a)
     const liTitreEl = document.createElement('li')
-    liTitreEl.classList.add('list-group-item', 'active')
+    liTitreEl.classList.add('list-group-item', 'active','fw-bold', 'fs-4')
     liTitreEl.innerText = `Table de ${a}`
     ulEl.appendChild(liTitreEl)
     randomize(arr)
