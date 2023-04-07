@@ -32,10 +32,6 @@ svg circle {
     stroke:#e9f0f3;
     stroke-dashoffset: 0;
 }
-.changing {
-    animation-timing-function: linear;
-    animation: circle 18s forwards;
-}
 @keyframes circle {
     to {
         stroke-dashoffset: 0;

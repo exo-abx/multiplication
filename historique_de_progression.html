@@ -16,9 +16,9 @@
     <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="./js/list.js" type="module" defer></script>
     <script src="./js/theme.js" defer></script>
 </head>
@@ -79,53 +79,106 @@
             </div>
         </div>
     </nav>
-    <div class="container pt-3">
-        <header>
-            <h1>Historique de progression</h1>
-        </header>
-        <main class="pt-3 mb-3">
-            <div id="todolist">
-            </div>
+    <div class="container mt-3">
+        <main class="pt-3 d-inline-block">
+            <header class="mb-3">
+                <h1>Historique de progression</h1>
+            </header>
+            <section>
+                <!-- Modal de confirmation -->
+                <div class="modal fade" id="modalSuppression" tabindex="-1" role="dialog"
+                    aria-labelledby="modalSuppressionLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalSuppressionLabel">Confirmation de suppression</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr de vouloir supprimer toutes les sauvegardes des exercices ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Annuler</button>
+                                    <button id="btnConfirmerSuppression" type="button" class="btn btn-danger"
+                                        data-dismiss="modal">Confirmer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3" id="todolist">
+                </div>
+            </section>
         </main>
-        <template id="no-todolist">
-            <div class="alert alert-info" role="alert">
-                <p>Aucun résultat n'a été trouvé.</p>
-                <p>Faites des exercices.</p>
-                <a class="btn btn-primary" href="exercices.html" role="button">Exercices</a>
-            </div>
-        </template>
-        <template id="todolist-progress">
-            <div class="resultat" id="resultat">
-                <div class="progress" style="height: 50px">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="30"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="70"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div>
-        </template>
-        <template id="todolist-layout">
-            <main>
-                <div class="accordion list-group" id="accordionExample"></div>
-            </main>
-        </template>
-        <template id="todolist-item">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link  text-white" type="button" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <ul class="card-body">
-
+    </div>
+    <template id="todolist-accordion">
+        <div class="accordion list-group mb-3" id="accordionExample">
+        </div>
+    </template>
+    <template id="todolist-layout">
+        <div class="card">
+            <div id="" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">Chronomètre pour : <span
+                                class="mode"></span></li>
+                        <li class="list-group-item full-quiz-ok d-none"></li>
+                        <li class="list-group-item list-group-item-primary">Temps : <span class="chrono"></span>
+                            secondes</li>
+                    </ul>
+                    <ul class="list-group list-group-result">
+                        <div class="progress" style="height: 50px">
+                            <div class="progress-bar bg-success pb-result" role="progressbar" style="width: 0%"
+                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                            <div class="progress-bar bg-danger pb-result" role="progressbar" style="width: 0%"
+                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
-        </template>
-    </div>
+        </div>
+    </template>
+    <template id="todolist-li-false">
+        <li class="list-group-item-danger list-group-item d-flex align-items-center">
+            <span><i class="bi bi-exclamation-triangle-fill me-2"></i></span>
+            <span class="fw-bold"></span>
+            <span class="ms-auto">Votre réponse : <span class="answer-result"></span></span>
+        </li>
+    </template>
+    <template id="todolist-li-true">
+        <li class="list-group-item-success todo list-group-item d-flex align-items-center">
+            <span><i class="bi bi-check-circle-fill me-2"></i></span>
+            <span class="result"></span>
+        </li>
+    </template>
+    <template id="card-header">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link text-decoration-none text-white p-0 h-100 w-100" type="button"
+                    data-toggle="collapse" data-target="" aria-expanded="true" aria-controls="collapseOne">
+                    <h5 class="m-0">Exercice <span class="exercice-type"></span></h5>
+                    <span class="exercice-date"></span>
+                </button>
+            </h5>
+        </div>
+    </template>
+    <template id="no-todolist">
+        <div class="alert alert-info" role="alert">
+            <p>Aucun résultat n'a été trouvé.</p>
+            <p>Faites des exercices.</p>
+            <a class="btn btn-primary" href="exercices.html" role="button">Exercices</a>
+        </div>
+    </template>
+    <template id="no-todoitem">
+        <div class="alert alert-info" role="alert">
+            <p>Vous n'avez pas répondu aux questions.</p>
+        </div>
+    </template>
     <footer class="my-4 pt-4 text-muted text-center text-small">
         <p>&copy; Version 2023 &#1581;&#1605;&#1586;&#1577; PERRIN</p>
     </footer>

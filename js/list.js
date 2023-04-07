@@ -1,9 +1,9 @@
 import { TodoList } from "./components/todoList.js";
 import { createElement } from "./functions/dom.js";
 try{
-    const todosInStorage = localStorage.getItem('exoTabs')
-    const todos = todosInStorage ? JSON.parse(todosInStorage) : []
-    const list = new TodoList(todos)
+    const QuizResultsInStorage = localStorage.getItem('quizResults')
+    const results = QuizResultsInStorage ? JSON.parse(QuizResultsInStorage) : []
+    const list = new TodoList(results)
     list.appendTo(document.querySelector('#todolist'))
 
 }catch(e){
@@ -14,4 +14,4 @@ try{
     alertElement.innerText = 'Impossible de charger les éléments'
     document.body.prepend(alertElement)
     console.error(e)
-}
+};
