@@ -134,17 +134,6 @@ class Quiz {
     showQuestion() {
         this.currentPair = this.pairs[this.currentQuestionIndex];
         const [a, b] = this.currentPair.factors;
-        // Récupérer l'élément cible
-        var elementCible = document.getElementById('countdown');
-
-        // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
-        document.getElementById('getx').addEventListener('focus', function () {
-            // Récupérer les coordonnées de l'élément cible
-            var rect = elementCible.getBoundingClientRect();
-
-            // Déplacer la position de défilement (scroll) vers les coordonnées de l'élément cible
-            window.scrollTo(0, rect.top);
-        });
         // Récupération de l'élément span correspondant à l'opérateur
         const operationTypeSpan = document.getElementById("operation");
         operationTypeSpan.textContent = this.operatorSymbolString;
@@ -248,7 +237,20 @@ class Quiz {
         this.resultatsSection.style.display = "none";
         this.exercicesSection.style.display = "block";
         const getx = document.getElementById("getx");
+        // Récupérer l'élément cible
+        var elementCible = document.querySelector('section');
+
+        // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
+        getx.addEventListener('focus', function () {
+            // Attendre 300 millisecondes (ou ajustez le délai selon vos besoins)
+            setTimeout(function () {
+                // Faire défiler l'élément cible en haut de la fenêtre
+                elementCible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        });
         getx.focus();
+
+
     }
     afficherRésultats() {
         // affiche la section résultats
