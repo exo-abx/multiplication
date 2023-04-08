@@ -63,6 +63,18 @@ class Quiz {
     }
     start() {
         this.afficherExercices();
+        // Récupérer l'élément cible
+        var elementCible = document.getElementById('countdown');
+
+        // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
+        document.getElementById('getx').addEventListener('focus', function () {
+            // Récupérer les coordonnées de l'élément cible
+            var rect = elementCible.getBoundingClientRect();
+
+            // Déplacer la position de défilement (scroll) vers les coordonnées de l'élément cible
+            window.scrollTo(0, rect.top);
+        });
+
         for (let i = 0; i < this.pairs.length; i++) {
             this.pairs[i] = this.createExerciseObject(this.pairs[i], this.operationType);
         }
@@ -78,19 +90,19 @@ class Quiz {
             if (this.numCorrectAnswers + this.numIncorrectAnswers < this.numOfQuestions) {
                 // Calcul du score
                 let score = `${this.numCorrectAnswers + this.numIncorrectAnswers} / ${this.numOfQuestions}`;
-                
+
                 // Modifier le texte et la classe du modal pour afficher le score et utiliser la classe 'danger'
                 $('#modalMessage').text(`Temps écoulé. Votre score : ${score}`).removeClass('text-success').addClass('text-danger');
-                
+
                 // Lancer le modal
                 $('#modalChronoFinished').modal('show');
-              } else {
+            } else {
                 // Modifier le texte et la classe du modal pour afficher le message de réussite et utiliser la classe 'success'
                 $('#modalMessage').text('Bravo !').removeClass('text-danger').addClass('text-success');
-                
+
                 // Lancer le modal
                 $('#modalChronoFinished').modal('show');
-              }              
+            }
         }
         if (!this.isQuizFinished) {
             this.isQuizFinished = true;
@@ -123,7 +135,7 @@ class Quiz {
     submitAnswer() {
         const form = document.querySelector("#formExo");
         const answerStr = form.getx.value.trim(); // trim() pour supprimer les espaces inutiles
-        if(this.timerFinished && this.countdownMode === "all" && answerStr === ''){
+        if (this.timerFinished && this.countdownMode === "all" && answerStr === '') {
             this.stop();
         } else {
             const answer = answerStr === '' ? 0 : parseInt(answerStr);
