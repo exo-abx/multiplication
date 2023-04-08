@@ -63,18 +63,6 @@ class Quiz {
     }
     start() {
         this.afficherExercices();
-        // Récupérer l'élément cible
-        var elementCible = document.getElementById('countdown');
-
-        // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
-        document.getElementById('getx').addEventListener('focus', function () {
-            // Récupérer les coordonnées de l'élément cible
-            var rect = elementCible.getBoundingClientRect();
-
-            // Déplacer la position de défilement (scroll) vers les coordonnées de l'élément cible
-            window.scrollTo(0, rect.top);
-        });
-
         for (let i = 0; i < this.pairs.length; i++) {
             this.pairs[i] = this.createExerciseObject(this.pairs[i], this.operationType);
         }
@@ -146,6 +134,17 @@ class Quiz {
     showQuestion() {
         this.currentPair = this.pairs[this.currentQuestionIndex];
         const [a, b] = this.currentPair.factors;
+        // Récupérer l'élément cible
+        var elementCible = document.getElementById('countdown');
+
+        // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
+        document.getElementById('getx').addEventListener('focus', function () {
+            // Récupérer les coordonnées de l'élément cible
+            var rect = elementCible.getBoundingClientRect();
+
+            // Déplacer la position de défilement (scroll) vers les coordonnées de l'élément cible
+            window.scrollTo(0, rect.top);
+        });
         // Récupération de l'élément span correspondant à l'opérateur
         const operationTypeSpan = document.getElementById("operation");
         operationTypeSpan.textContent = this.operatorSymbolString;
