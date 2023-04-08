@@ -136,15 +136,12 @@ class Quiz {
         const [a, b] = this.currentPair.factors;
         const getx = document.getElementById("getx");
         // Récupérer l'élément cible
-        var elementCible = document.querySelector('section');
+        var elementCible = document.querySelector('#countdown');
 
         // Écouteur d'événement pour détecter quand l'utilisateur entre dans un champ de saisie
         getx.addEventListener('focus', function () {
-            // Attendre 300 millisecondes (ou ajustez le délai selon vos besoins)
-            setTimeout(function () {
                 // Faire défiler l'élément cible en haut de la fenêtre
                 elementCible.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500);
         });
         getx.focus();
         // Récupération de l'élément span correspondant à l'opérateur
