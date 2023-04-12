@@ -12,7 +12,7 @@ export function getOperatorSymbols(operationType) {
     return { operatorSymbolString, operatorSymbol };
 }
 export function getTextSymbols(operationType) {
-    const operatorSymbolText = operationType === "addition" ? "d'adition" :
+    const operatorSymbolText = operationType === "addition" ? "d'addition" :
         operationType === "soustraction" ? "de soustraction" :
             operationType === "multiplication" ? "de multiplication" :
                 operationType === "division" ? "de division" : "de multiplication";
